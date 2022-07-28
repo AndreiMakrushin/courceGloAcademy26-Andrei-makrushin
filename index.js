@@ -9,5 +9,3 @@ let adaptive;
 
 alert('Js это просто');
 console.log('Js это просто');
-
-

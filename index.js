@@ -71,7 +71,6 @@ console.log(service1);
 console.log(servicePrice1);
 console.log(service2);
 console.log(servicePrice2);
-console.log(fullprice);
 console.log(rollback);
 console.log(servicePercentPrice);
 //----------------------------------------

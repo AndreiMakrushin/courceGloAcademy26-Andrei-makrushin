@@ -1,52 +1,34 @@
-// задание 3
 const title = prompt('Как называется ваш проект?', '');
-
-// задание 4
 const screens = prompt('Какие типы экранов нужно разработать?', '');
-
-// задание 5
 const screenPrice = parseFloat(prompt('Сколько будет стоить данная работа?', ''));
-
-// задание 6
-const adaptive = prompt('Нужен ли адаптив на сайте?', '');
-
-// задание 7
-const service1 = prompt('Нужна ли админка?', '');
 const servicePrice1 = parseFloat(prompt('Сколько это будет стоить?', ''));
-const service2 = prompt('Нужна ли корзина?', '');
 const servicePrice2 = parseFloat(prompt('Сколько это будет стоить?', ''));
-
-// задание 8
-const fullprice = (screenPrice + servicePrice1 + servicePrice2);
-
-//задание 9
 const rollback = 80;
-const servicePercentPrice = Math.ceil(Number(fullprice * rollback / 100));
+// задание 1 
+const getAllServicePrices = function (a, b) {
+    return a + b
+};
+const allServicePrices = (getAllServicePrices(servicePrice1, servicePrice2));
 
-//задание 10
-switch (true) {
-    case servicePercentPrice >= 30000:                                              
-        console.log("Даем скидку 10%");
-        break;
-    case servicePercentPrice >= 15000:                                
-        console.log("Даем скидку 5%");
-        break;
-    case servicePercentPrice >= 0:                                   
-        console.log("Скидка не предусмотрена");
-        break;
-    default:
-        console.log("Что-то пошло не так");
-        break;
+// задание 2
+function getFullPrice(screenPrice, getAllServicePrices) {
+    return screenPrice + getAllServicePrices(servicePrice1, servicePrice2)
+};
+const fullPrice = (getFullPrice(screenPrice, getAllServicePrices));
+
+// задание 3
+const getTitle = function() {
+    return title[0].toUpperCase() + title.substr(1).toLowerCase ();
+};
+    getTitle(); 
+
+//задание 4
+const getServicePercentPrices = function (fullPrice, rollback) {
+    return fullPrice * rollback / 100
 }
+const servicePercentPrice = (getServicePercentPrices(fullPrice, rollback));
 
-console.log(title);
-console.log(screens);
-console.log(screenPrice);
-console.log(adaptive);
-console.log(service1);
-console.log(servicePrice1);
-console.log(service2);
-console.log(servicePrice2);
-console.log(fullprice);
-console.log(rollback);
-console.log(servicePercentPrice);
+getRollbackMessage = () => {
+    return alert('Скидка 0% поздравляем')
+}
+getRollbackMessage();

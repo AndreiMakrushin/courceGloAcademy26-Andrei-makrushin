@@ -32,3 +32,8 @@ getRollbackMessage = () => {
     return alert('Скидка 0% поздравляем')
 }
 getRollbackMessage();
+
+const showTypeOf = (variable) =>{
+    alert(variable);
+}
+showTypeOf(title);

@@ -5,8 +5,8 @@ const servicePrice1 = parseFloat(prompt('Сколько это будет сто
 const servicePrice2 = parseFloat(prompt('Сколько это будет стоить?', ''));
 const rollback = 80;
 // задание 1 
-const getAllServicePrices = function (a, b) {
-    return a + b
+const getAllServicePrices = function (aservicePrice1, servicePrice2) {
+    return aservicePrice1 + servicePrice2
 };
 const allServicePrices = (getAllServicePrices(servicePrice1, servicePrice2));
 

@@ -34,6 +34,10 @@ getRollbackMessage = () => {
 getRollbackMessage();
 
 const showTypeOf = (variable) =>{
-    alert(variable);
+    alert(typeof(variable));
 }
 showTypeOf(title);
+
+
+
+console.log(screens);

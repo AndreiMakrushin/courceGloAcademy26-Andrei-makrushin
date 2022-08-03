@@ -1,15 +1,16 @@
-const title = String(prompt('Как называется ваш проект?', ''));
-const screens = "Простые, Сложные, Интерактивные";
+let title = prompt('Как называется ваш проект?', '');
+let screens = prompt('Какие типы экранов нужно разработать?', 'Простые, Сложные, Интерактивные');
 const screenPrice = parseFloat(prompt('Сколько будет стоить данная работа?', ''));
-const adaptive = prompt('Нужен ли адаптив на сайте?', '');
-const service1 = prompt('Нужна ли админка?', '');
+const adaptive = confirm('Нужен ли адаптив на сайте?', '');
+const service1 = prompt('Какой дополнительный тип услуги нужен?', 'Корзина');
 const servicePrice1 = parseFloat(prompt('Сколько это будет стоить?', ''));
-const service2 = prompt('Нужна ли корзина?', '');
+const service2 = prompt('Какой дополнительный тип услуги нужен?', 'Админка');
 const servicePrice2 = parseFloat(prompt('Сколько это будет стоить?', ''));
 const fullprice = (screenPrice + servicePrice1 + servicePrice2);
 const rollback = 80;
 
 //-----------------------------------------------------------------------------------------------------------------------------------------
+screens = screens.trim().toLowerCase().split(', ');
 // задание 1 
 const getAllServicePrices = function (servicePrice1, servicePrice2) {
     return servicePrice1 + servicePrice2
@@ -25,15 +26,14 @@ function getFullPrice(screenPrice, allServicePrices) {
                                                                             
 
 // задание 3
-const getTitle = function(title) {
-    console.log(title[0].toUpperCase() + title.substr(1).toLowerCase().trim()) ;
+function getTitle(title) {
+    console.log(title[0].toUpperCase() + title.substr(1).toLowerCase().trim().replaceAll(/^\s+|\s+$/g, '')) ;
 };
-const gettitl = getTitle(title); 
-                                                                                
+const gettitl = getTitle(title);                                                                              
 
 //задание 4
 const getServicePercentPrices = function (fullPrice, rollback) {
-    return fullPrice * rollback / 100;
+    return fullPrice - (fullPrice * rollback / 100);
 }
   const servicePercentPrice = (getServicePercentPrices(fullPrice, rollback));
                                                                                     
@@ -69,7 +69,6 @@ console.log(screenPrice);
 console.log(adaptive);
 console.log(service1);
 console.log(servicePrice1);
-console.log(service2);
 console.log(servicePrice2);
 console.log(rollback);
 console.log(servicePercentPrice);

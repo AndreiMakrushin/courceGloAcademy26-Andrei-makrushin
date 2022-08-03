@@ -25,12 +25,13 @@ function getFullPrice(screenPrice, allServicePrices) {
                                                                             
 
 // задание 3
-const getTitle = function() {  
-    return title.trim()[0].toUpperCase() + title.trim().substr(1).toLowerCase;
+const getTitle = function(str) {
+    const title = str.trim().toLowerCase();
+      
+    return title[0].toUpperCase() + title.substr(1);
   };
   
   title = getTitle(title);
-                                                                        
 
 //задание 4
 const getServicePercentPrices = function (fullPrice, rollback) {
@@ -44,25 +45,25 @@ const showTypeOf = function(variable){
 }
                                                                                     
 
-getRollbackMessage = (servicePercentPrice) =>{
-    switch (true) {
-        case servicePercentPrice >= 30000:                                              
-            console.log("Даем скидку 10%");
-            break;
-        case servicePercentPrice >= 15000:                                
-            console.log("Даем скидку 5%");
-            break;
-        case servicePercentPrice >= 0:                                   
-            console.log("Скидка не предусмотрена");
-            break;
-        default:
-            console.log("Что-то пошло не так");
-            break;
-    }
+getRollbackMessage = () =>{
+    console.log('скидка 0%');
 }
-const RollbackMessage = getRollbackMessage(servicePercentPrice);                        
+const RollbackMessage = getRollbackMessage();                        
 //задание 10
-
+switch (true) {
+    case servicePercentPrice >= 30000:                                              
+        console.log("Даем скидку 10%");
+        break;
+    case servicePercentPrice >= 15000:                                
+        console.log("Даем скидку 5%");
+        break;
+    case servicePercentPrice >= 0:                                   
+        console.log("Скидка не предусмотрена");
+        break;
+    default:
+        console.log("Что-то пошло не так");
+        break;
+}
 
 console.log(title);
 console.log(screens);
@@ -79,4 +80,3 @@ console.log(fullPrice);
 console.log(showTypeOf(title));
 console.log(showTypeOf(screenPrice));
 console.log(showTypeOf(adaptive));
-console.log(RollbackMessage);

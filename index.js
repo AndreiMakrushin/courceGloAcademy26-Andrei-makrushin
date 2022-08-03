@@ -6,11 +6,10 @@ const service1 = prompt('Какой дополнительный тип услу
 const servicePrice1 = parseFloat(prompt('Сколько это будет стоить?', ''));
 const service2 = prompt('Какой дополнительный тип услуги нужен?', 'Админка');
 const servicePrice2 = parseFloat(prompt('Сколько это будет стоить?', ''));
-const fullprice = (screenPrice + servicePrice1 + servicePrice2);
 const rollback = 80;
 
 //-----------------------------------------------------------------------------------------------------------------------------------------
-screens = screens.trim().toLowerCase().split(', ');
+screens = screens.trim().split(', ');
 // задание 1 
 const getAllServicePrices = function (servicePrice1, servicePrice2) {
     return servicePrice1 + servicePrice2
@@ -26,10 +25,8 @@ function getFullPrice(screenPrice, allServicePrices) {
                                                                             
 
 // задание 3
-const getTitle = function(str) {
-    const title = str.trim().toLowerCase();
-      
-    return title[0].toUpperCase() + title.substr(1);
+const getTitle = function() {  
+    return title.trim()[0].toUpperCase() + title.trim().substr(1).toLowerCase;
   };
   
   title = getTitle(title);
@@ -42,30 +39,30 @@ const getServicePercentPrices = function (fullPrice, rollback) {
   const servicePercentPrice = (getServicePercentPrices(fullPrice, rollback));
                                                                                     
 
-const showTypeOf = (variable) =>{
-    return typeof(variable) 
+const showTypeOf = function(variable){
+    return typeof(variable , typeof variable);
 }
                                                                                     
 
-getRollbackMessage = (fullPrice) =>{
-    return fullPrice
+getRollbackMessage = (servicePercentPrice) =>{
+    switch (true) {
+        case servicePercentPrice >= 30000:                                              
+            console.log("Даем скидку 10%");
+            break;
+        case servicePercentPrice >= 15000:                                
+            console.log("Даем скидку 5%");
+            break;
+        case servicePercentPrice >= 0:                                   
+            console.log("Скидка не предусмотрена");
+            break;
+        default:
+            console.log("Что-то пошло не так");
+            break;
+    }
 }
-const getRollbackMessag = getRollbackMessage(fullPrice);                        
+const getRollbackMessag = getRollbackMessage(servicePercentPrice);                        
 //задание 10
-switch (true) {
-    case servicePercentPrice >= 30000:                                              
-        console.log("Даем скидку 10%");
-        break;
-    case servicePercentPrice >= 15000:                                
-        console.log("Даем скидку 5%");
-        break;
-    case servicePercentPrice >= 0:                                   
-        console.log("Скидка не предусмотрена");
-        break;
-    default:
-        console.log("Что-то пошло не так");
-        break;
-}
+
 
 console.log(title);
 console.log(screens);

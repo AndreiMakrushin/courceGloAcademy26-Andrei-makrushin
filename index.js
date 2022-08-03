@@ -26,10 +26,14 @@ function getFullPrice(screenPrice, allServicePrices) {
                                                                             
 
 // задание 3
-function getTitle(title) {
-    console.log(title[0].toUpperCase() + title.substr(1).toLowerCase().trim().replaceAll(/^\s+|\s+$/g, '')) ;
-};
-const gettitl = getTitle(title);                                                                              
+const getTitle = function(str) {
+    const title = str.trim().toLowerCase();
+      
+    return title[0].toUpperCase() + title.substr(1);
+  };
+  
+  title = getTitle(title);
+                                                                        
 
 //задание 4
 const getServicePercentPrices = function (fullPrice, rollback) {
@@ -75,7 +79,6 @@ console.log(servicePercentPrice);
 //----------------------------------------
 console.log(allServicePrices);
 console.log(fullPrice);
-console.log(gettitl);
 console.log(showTypeOf(title));
 console.log(showTypeOf(screenPrice));
 console.log(showTypeOf(adaptive));

@@ -60,7 +60,7 @@ getRollbackMessage = (servicePercentPrice) =>{
             break;
     }
 }
-const getRollbackMessag = getRollbackMessage(servicePercentPrice);                        
+const RollbackMessage = getRollbackMessage(servicePercentPrice);                        
 //задание 10
 
 
@@ -79,4 +79,4 @@ console.log(fullPrice);
 console.log(showTypeOf(title));
 console.log(showTypeOf(screenPrice));
 console.log(showTypeOf(adaptive));
-console.log(getRollbackMessag);
+console.log(RollbackMessage);

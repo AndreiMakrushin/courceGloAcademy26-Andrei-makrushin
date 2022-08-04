@@ -6,7 +6,7 @@ let service1 ;
 let servicePrice1 /*= parseFloat(prompt('Сколько это будет стоить?', '2000'))*/;
 let service2  ;
 let servicePrice2 /*= parseFloat(prompt('Сколько это будет стоить?', '2000'))*/;
-const rollback = 80;
+const rollback = 50;
 
 //-----------------------------------------------------------------------------------------------------------------------------------------
 const isNumber = function (num) {
@@ -23,18 +23,20 @@ do {
 function getAllServicePrices() {
     let sum = 0;
     for (let i = 0; i < 2; i++) {
+        let price;
         if (i === 0){
             service1 = prompt('Какой дополнительный тип услуги нужен?', 'Корзина');
         }else if (i === 1){
             service2 = prompt('Какой дополнительный тип услуги нужен?', 'Админка');
         } 
         do {
-            sum = prompt('Сколько это будет стоить?', '2000');
-        } while (!isNumber(sum));
-        
+            price = +prompt('Сколько это будет стоить?', '2000');
+        } while (!isNumber(price));
+         sum += price
+ 
     }
     
-    return +sum + +sum
+    return sum 
 }
 const allServicePrices = (getAllServicePrices());
                                                                                  

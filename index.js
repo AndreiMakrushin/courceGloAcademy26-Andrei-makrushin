@@ -70,7 +70,7 @@ const showTypeOf = function(variable){
                                                                                     
 
 getRollbackMessage = () =>{
-    console.log('скидка 0%');
+    
 }
 const RollbackMessage = getRollbackMessage();                        
 //задание 10
@@ -94,8 +94,6 @@ console.log(screens);
 console.log(screenPrice);
 console.log(adaptive);
 console.log(service1);
-console.log(servicePrice1);
-console.log(servicePrice2);
 console.log(rollback);
 console.log(servicePercentPrice);
 //----------------------------------------

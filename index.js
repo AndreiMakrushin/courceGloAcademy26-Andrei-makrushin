@@ -70,24 +70,24 @@ const showTypeOf = function(variable){
                                                                                     
 
 getRollbackMessage = () =>{
-    
+    switch (true) {
+        case servicePercentPrice >= 30000:                                              
+            console.log("Даем скидку 10%");
+            break;
+        case servicePercentPrice >= 15000:                                
+            console.log("Даем скидку 5%");
+            break;
+        case servicePercentPrice >= 0:                                   
+            console.log("Скидка не предусмотрена");
+            break;
+        default:
+            console.log("Что-то пошло не так");
+            break;
+    }
 }
-const RollbackMessage = getRollbackMessage();                        
+getRollbackMessage();                        
 //задание 10
-switch (true) {
-    case servicePercentPrice >= 30000:                                              
-        console.log("Даем скидку 10%");
-        break;
-    case servicePercentPrice >= 15000:                                
-        console.log("Даем скидку 5%");
-        break;
-    case servicePercentPrice >= 0:                                   
-        console.log("Скидка не предусмотрена");
-        break;
-    default:
-        console.log("Что-то пошло не так");
-        break;
-}
+
 
 console.log(title);
 console.log(screens);

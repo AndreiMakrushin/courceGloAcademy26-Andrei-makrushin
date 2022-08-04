@@ -1,20 +1,42 @@
-let title = prompt('Как называется ваш проект?', '');
+let title = prompt('Как называется ваш проект?', 'Проект');
 let screens = prompt('Какие типы экранов нужно разработать?', 'Простые, Сложные, Интерактивные');
-const screenPrice = parseFloat(prompt('Сколько будет стоить данная работа?', ''));
+let screenPrice;
 const adaptive = confirm('Нужен ли адаптив на сайте?', '');
-const service1 = prompt('Какой дополнительный тип услуги нужен?', 'Корзина');
-const servicePrice1 = parseFloat(prompt('Сколько это будет стоить?', ''));
-const service2 = prompt('Какой дополнительный тип услуги нужен?', 'Админка');
-const servicePrice2 = parseFloat(prompt('Сколько это будет стоить?', ''));
+let service1 ;
+let servicePrice1 /*= parseFloat(prompt('Сколько это будет стоить?', '2000'))*/;
+let service2  ;
+let servicePrice2 /*= parseFloat(prompt('Сколько это будет стоить?', '2000'))*/;
 const rollback = 80;
 
 //-----------------------------------------------------------------------------------------------------------------------------------------
-screens = screens.trim().split(', ');
+const isNumber = function (num) {
+    return !isNaN(parseFloat(num)) && isFinite(num)   
+}
+
+do {
+    screenPrice = +prompt('Сколько будет стоить данная работа?', '15000');
+  } while (!isNumber(screenPrice));
+
+//---------------------------------------------------------------
+
 // задание 1 
-const getAllServicePrices = function (servicePrice1, servicePrice2) {
-    return servicePrice1 + servicePrice2
-};
-const allServicePrices = (getAllServicePrices(servicePrice1, servicePrice2));
+function getAllServicePrices() {
+    let sum = 0;
+    for (let i = 0; i < 2; i++) {
+        if (i === 0){
+            service1 = prompt('Какой дополнительный тип услуги нужен?', 'Корзина');
+        }else if (i === 1){
+            service2 = prompt('Какой дополнительный тип услуги нужен?', 'Админка');
+        } 
+        do {
+            sum = prompt('Сколько это будет стоить?', '2000');
+        } while (!isNumber(sum));
+        
+    }
+    
+    return +sum + +sum
+}
+const allServicePrices = (getAllServicePrices());
                                                                                  
 
 // задание 2
@@ -32,7 +54,7 @@ const getTitle = function(str) {
   };
   
   title = getTitle(title);
-
+  screens = screens.trim().split(', ');
 //задание 4
 const getServicePercentPrices = function (fullPrice, rollback) {
     return fullPrice - (fullPrice * rollback / 100);

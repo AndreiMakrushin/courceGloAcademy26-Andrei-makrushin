@@ -1,68 +1,82 @@
 const appData = {
     title: '',
-    screens: '',
+    screens: [],
     screenPrice: 0,
     adaptive: true,
     allServicePrices: 0,
     fullPrice: 0,
     servicePercentPrice: 0,
-    service1: '',
-    service2: '',
+    services: [],
     rollback: 50,
     asking: function(){
-        this.title = prompt('Как называется ваш проект?', 'Проект');
-        this.screens = prompt('Какие типы экранов нужно разработать?', 'Простые, Сложные, Интерактивные');
-        do {
-            this.screenPrice = +prompt('Сколько будет стоить данная работа?', '15000');
-           
-          } while (!this.isNumber(appData.screenPrice));
+                
+            do {
+                appData.title = prompt('Как называется ваш проект?', 'Проект');
+            } while (appData.isNumber(appData.title));
+
+          for (let i = 0; i < 2; i++){
+            do {
+                name = prompt('Какие типы экранов нужно разработать?');
+            } while (appData.isNumber(name));
+            
+            let price; 
+            do {
+                price = +prompt('Сколько будет стоить данная работа?', '15000');
+              } while (!appData.isNumber(price));
+           appData.screens.push({id: i, name: name, price: price})
+          }
+
+          for (let i = 0; i < 2; i++) {
+            do {
+                 name = prompt('Какой дополнительный тип услуги нужен?', 'Корзина');
+            } while (appData.isNumber(name));
+            
+            let price;                                                                                  
+            do {
+                price = +prompt('Сколько это будет стоить?', '2000');
+            } while (!appData.isNumber(price));
+
+            appData.services[name] = +price
+            appData.services.push({id: i, name: name, price: price})
+        }
+          appData.adaptive = confirm('Нужен ли адаптив на сайте?', '')
+
           
-          this.adaptive = confirm('Нужен ли адаптив на сайте?', '')
     },
+    
     //------------------------------------------------
     isNumber: function (num) {
-        return !isNaN(parseFloat(num)) && isFinite(num)   
+        return !isNaN(parseFloat(num)) && isFinite(num) && num.length !== 0
     },
     //------------------------------------------------
     getAllServicePrices: function () {
-        let sum = 0;
-        for (let i = 0; i < 2; i++) {
-            let price;
-            if (i === 0){
-                this.service1 = prompt('Какой дополнительный тип услуги нужен?', 'Корзина');
-            }else if (i === 1){
-                this.service2 = prompt('Какой дополнительный тип услуги нужен?', 'Админка');
-            } 
-            do {
-                price = +prompt('Сколько это будет стоить?', '2000');
-            } while (!this.isNumber(price));
-             sum += price
-     
+        appData.screenPrice = appData.screens.reduce((sum, current) => sum + current.price, 0);
+        for (let key in appData.services){
+            appData.allServicePrices += appData.services[key];
         }
-        return sum 
     },
     //---------------------------------------------
     getFullPrice: function () {
-        return this.screenPrice + this.allServicePrices
+        appData.fullPrice =  appData.screenPrice + appData.allServicePrices
     },
     //---------------------------------------------
     getTitle: function () {   
-        return this.title.trim()[0].toUpperCase() + this.title.trim().substr(1).toLowerCase();
+        appData.title =  appData.title.trim()[0].toUpperCase() + appData.title.trim().substr(1).toLowerCase();
       },
     //---------------------------------------------
     getServicePercentPrices: function () {
-        return this.fullPrice - (this.fullPrice * this.rollback / 100);
+        appData.servicePercentPrice =  appData.fullPrice - (appData.fullPrice * appData.rollback / 100);
     },
     //---------------------------------------------
     getRollbackMessage: function() {
         switch (true) {
-            case this.servicePercentPrice >= 30000:                                              
+            case appData.servicePercentPrice >= 30000:                                              
                 console.log("Даем скидку 10%");
                 break;
-            case this.servicePercentPrice >= 15000:                                
+            case appData.servicePercentPrice >= 15000:                                
                 console.log("Даем скидку 5%");
                 break;
-            case this.servicePercentPrice >= 0:                                   
+            case appData.servicePercentPrice >= 0:                                   
                 console.log("Скидка не предусмотрена");
                 break;
             default:
@@ -71,16 +85,23 @@ const appData = {
         }
     },
     logger: function(){
-        for (let key in appData){
+       /* for (let key in appData){
             console.log("Ключ " + key + " " + "Значение " + appData[key]);
-        }
+        }*/
+        console.log(appData.screens);
+        console.log(appData.services);
+        console.log(appData.allServicePrices);
+        console.log(appData.fullPrice);
+        console.log(appData.servicePercentPrice);
+
     },
     start: function(){
-       this.asking();
-       this.allServicePrices =  this.getAllServicePrices();
-       this.fullPrice = this.getFullPrice();
-       this.servicePercentPrice = this.getServicePercentPrices();
-       this.logger();   
+       appData.asking();
+        appData.getAllServicePrices();
+       appData.getFullPrice();
+       appData.getServicePercentPrices();
+       appData.getTitle();
+       appData.logger();   
     }
     
 }

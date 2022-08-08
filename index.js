@@ -6,7 +6,7 @@ const appData = {
     allServicePrices: 0,
     fullPrice: 0,
     servicePercentPrice: 0,
-    services: [],
+    services: {},
     rollback: 50,
     asking: function(){
                 
@@ -37,7 +37,6 @@ const appData = {
             } while (!appData.isNumber(price));
 
             appData.services[name] = +price
-            appData.services.push({id: i, name: name, price: price})
         }
           appData.adaptive = confirm('Нужен ли адаптив на сайте?', '')
 

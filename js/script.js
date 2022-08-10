@@ -28,8 +28,12 @@ const span = document.querySelector('.rollback .range-value')
 console.log(span)
 //----------------------------------------------------------------------
 
-const totalInput = document.getElementsByClassName("total-input")
-console.log(totalInput)                                                                                     //
+const layoutCost = document.getElementsByClassName("total-input")[0]
+const numberScreens = document.getElementsByClassName("total-input")[1]
+const additionalServices = document.getElementsByClassName("total-input")[2]
+const theTotalCost = document.getElementsByClassName("total-input")[3]
+const costIncludingRollback = document.getElementsByClassName("total-input")[4]
+console.log(layoutCost, numberScreens, additionalServices, theTotalCost, costIncludingRollback)
 //-----------------------------------------------------------------------
 
 let screen = document.querySelectorAll('.screen')

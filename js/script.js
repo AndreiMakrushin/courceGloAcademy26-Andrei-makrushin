@@ -36,27 +36,30 @@ const appData = {
     servicePercentPrice: 0,
     servicesPercent: {},
     servicesNumber: {},
-    rollback: 50,
+    rollback: 0,
     //-------------------------------------------------------------------------
 
     init: function () {
         appData.addTitle()
         startBtn.addEventListener('click', appData.start)
         buttonPlus.addEventListener('click', appData.addScreenBlock)
+        inputRange.addEventListener('input', appData.range)
+        
     },
     //------------------------------------------------------------------------
+    range: function (e) {
+            inputRangeValue.textContent = +(appData.rollback = (e.target.value))
+            console.log(inputRangeValue.textContent)
+    },
 
     addTitle: function () {
-        document.title = title.textContent;
+        document.title = title.textContent; 
     },
     //---------------------------------------------------------------------
 
-    start: function(){
-        appData.addScreens();
-        appData.addServices();
-        appData.getAllServicePrices(); 
-        console.log(appData)
-        appData.showResult()
+    addScreenBlock: function () {
+        const cloneScreen = screens[0].cloneNode(true)
+        screens[screens.length - 1].after(cloneScreen)
     },
     //-----------------------------------------------------------------------
 
@@ -64,22 +67,26 @@ const appData = {
         total.value = appData.screenPrice
         totalCountOther.value = appData.servicePricesPercent + appData.servicePricesNumber
         fullTotalCount.value = +total.value + +totalCountOther.value
+        totalCountRollback.value = +fullTotalCount.value + +fullTotalCount.value * (inputRangeValue.textContent / 100)
     },
     //----------------------------------------------------------------------------
 
     addScreens: function(){
         screens = document.querySelectorAll('.screen')
         screens.forEach(function(screen, index) {
-            const select = screen.querySelector('select')
-            const input = screen.querySelector('input')
-            const selectName = select.options[select.selectedIndex].textContent
+        const select = screen.querySelector('select')
+        const input = screen.querySelector('input')
+        const selectName = select.options[select.selectedIndex].textContent
 
             appData.screens.push({
                 id: index, 
                 name: selectName, 
-                price: +select.value * +input.value})
+                price: +select.value * +input.value,
+                count: +input.value
+                
+            })
         })
-        console.log(appData.screens)
+        
     },
     //-------------------------------------------------------------------------------
 
@@ -108,15 +115,13 @@ const appData = {
     },
     //-----------------------------------------------------------------------------
 
-    addScreenBlock: function () {
-        const cloneScreen = screens[0].cloneNode(true)
-        screens[screens.length - 1].after(cloneScreen)
-    },
+    
     //----------------------------------------------------------------------------------
 
-    getAllServicePrices: function () {
+    addPrices: function () {
         appData.screenPrice = appData.screens.reduce((sum, current) => sum + current.price, 0);
-
+        totalCount.value = appData.screens.reduce((sum, current) => sum + current.count, 0);
+        
         for (let key in appData.servicesNumber){
             appData.servicePricesNumber += appData.servicesNumber[key];
         }
@@ -125,8 +130,16 @@ const appData = {
             appData.servicePricesPercent += appData.screenPrice * (appData.servicesPercent[key] / 100)
         }
         appData.fullPrice =  appData.screenPrice + appData.servicePricesPercent + appData.servicePricesPercent
+       
     },
     //---------------------------------------------   
+
+    start: function(){
+        appData.addScreens();
+        appData.addServices();
+        appData.addPrices(); 
+        appData.showResult();
+    },
 }
 
 appData.init();

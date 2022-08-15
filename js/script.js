@@ -38,6 +38,7 @@ const appData = {
     servicesPercent: {},
     servicesNumber: {},
     rollback: 0,
+    inputRangeValue: 0,
     //-------------------------------------------------------------------------
 
     init: function () {
@@ -50,20 +51,19 @@ const appData = {
     
     //------------------------------------------------------------------------
     range: function() {
-        inputRangeValue.value =+(appData.rollback = +inputRange.value)
-        inputRangeValue.textContent = inputRangeValue.value + "%"
+        appData.rollback = +inputRange.value
+        inputRangeValue.textContent = appData.rollback + "%"
 
     },
 
     addTitle: function () {
-
         document.title = title.textContent; 
     },
     //---------------------------------------------------------------------
 
     addScreenBlock: function () {
         const cloneScreen = screens[0].cloneNode(true)
-        screens[screens.length - 1].after(cloneScreen)
+        screens[screens.length - 1].before(cloneScreen)
         cloneScreen.querySelector('input').value = '';
     },
     //-----------------------------------------------------------------------
@@ -72,7 +72,7 @@ const appData = {
         total.value = appData.screenPrice
         totalCountOther.value = appData.servicePricesPercent + appData.servicePricesNumber
         fullTotalCount.value = +total.value + +totalCountOther.value
-        totalCountRollback.value = +fullTotalCount.value + +fullTotalCount.value * (inputRangeValue.value / 100)
+        totalCountRollback.value = +fullTotalCount.value + +fullTotalCount.value * (appData.rollback / 100)
         totalCount.value = appData.screens.reduce((sum, current) => sum + current.count, 0);
     },
     //----------------------------------------------------------------------------
@@ -137,13 +137,21 @@ const appData = {
         let check = true;
         if (appData.screens.length > 0) {
             appData.screens.forEach(function(item) {
-                if (item.name === 'Тип экранов' || item.count === '' || parseInt(item.count) < 1) check = false
-            })}
-        if (check) {
-            appData.addServices();
-            appData.addPrices(); 
-            appData.showResult();
-        }
+                if (item.name === ''|| item.count === ''|| parseInt(item.count) < 1) {
+                    check = false
+                    console.log('пусто', check)
+                } else{
+                    check = true
+                    console.log('отработало', check)
+                }   
+            })
+            if (check) {
+                appData.addServices();
+                appData.addPrices(); 
+                appData.showResult();
+                console.log(appData);
+            }}
+        
     },
 }
 

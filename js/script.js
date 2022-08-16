@@ -64,6 +64,7 @@ const appData = {
     addScreenBlock: function () {
         const cloneScreen = screens[0].cloneNode(true)
         screens[screens.length - 1].before(cloneScreen)
+        screens[screens.length - 1].after(cloneScreen)
         cloneScreen.querySelector('input').value = '';
     },
     //-----------------------------------------------------------------------
@@ -134,15 +135,12 @@ const appData = {
 
     start: function(){
         appData.addScreens();
-        let check = true;
+        let check = true
         if (appData.screens.length > 0) {
             appData.screens.forEach(function(item) {
-                if (item.name === ''|| item.count === ''|| parseInt(item.count) < 1) {
-                    check = false
-                    console.log('пусто', check)
-                } else{
+                if (item.name === 'Тип экранов'|| item.count === ''|| parseInt(item.count) < 1) check = false, alert('не выбран экран или количество')
+                     else{
                     check = true
-                    console.log('отработало', check)
                 }   
             })
             if (check) {

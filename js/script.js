@@ -129,7 +129,7 @@ const appData = {
         let checkScreens = true
         if (appData.screens.length > 0) {
             appData.screens.forEach(function (item) {
-                if (item.name === 'Тип экранов' || item.count === '' || parseInt(item.count) < 1) checkScreens = false, alert('Введите тип экрана и желаемое количество')
+                if (item.name === 'Тип экранов' || item.count === '' || parseInt(item.count) < 1) checkScreens = false
             })
         } else {
             checkScreens = false

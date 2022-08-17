@@ -66,7 +66,7 @@ const appData = {
         totalCount.value = appData.count
         totalCountOther.value = appData.servicePricesPercent + appData.servicePricesNumber
         fullTotalCount.value = appData.fullPrice
-        totalCountRollback.value = appData.servicePercentPrice
+        totalCountRollback.value = +fullTotalCount.value + +fullTotalCount.value * (this.rollback / 100)
     },
     //-------------------------------------------------------------------
     addScreens: function () {

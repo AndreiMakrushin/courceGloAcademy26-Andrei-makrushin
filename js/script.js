@@ -67,8 +67,25 @@ const appData = {
         const input = screen.querySelector('input')
         select.disabled = false;
         input.disabled = false;
-        select = ''
-        input = ''
+        select.value = '';
+        input.value = '';
+        total.value = 0;
+        this.screens = [];
+        cloneScreen = screens[0].remove(screens)
+        otherItemsPercent.forEach( (item) => {
+            const check = item.querySelector('input[type=checkbox]')
+            check.checked = false;
+        });
+        otherItemsNumber.forEach((item) => {
+            const check = item.querySelector('input[type=checkbox]')
+            check.checked = false;
+        });
+        totalCount.value = 0;
+        totalCountOther.value = 0;
+        fullTotalCount.value = 0;
+        totalCountRollback.value = 0;
+        inputRangeValue.textContent = 0 + '%';
+        inputRange.value = 0;
         startBtn.style.display = 'block'
         resetBtn.style.display = 'none'
     })  

@@ -42,10 +42,10 @@ const appData = {
 
     init: function () {
         this.addTitle()
-        resetBtn.addEventListener('click', this.reset)
-        startBtn.addEventListener('click', this.start)
-        buttonPlus.addEventListener('click', this.addScreenBlock)
-        inputRange.addEventListener('input', this.range)
+        resetBtn.addEventListener('click', this.reset.bind(this))
+        startBtn.addEventListener('click', this.start.bind(this))
+        buttonPlus.addEventListener('click', this.addScreenBlock.bind(this))
+        inputRange.addEventListener('input', this.range.bind(this))
         
     },
     //------------------------------------------------------------------------
@@ -112,8 +112,8 @@ const appData = {
         totalCount.value = this.screens.reduce((sum, current) => sum + current.count, 0);
     },
     range: function() {
-        appData.rollback = +inputRange.value
-        inputRangeValue.textContent = appData.rollback + "%"
+        this.rollback = +inputRange.value
+        inputRangeValue.textContent = this.rollback + "%"
     },
     //----------------------------------------------------------------------------
 
@@ -166,20 +166,20 @@ const appData = {
     //---------------------------------------------   
 
     start: function(){
-        appData.addScreens();
+        this.addScreens();
         let check = true
-        if (appData.screens.length > 0) {
-            appData.screens.forEach((item) =>{
+        if (this.screens.length > 0) {
+            this.screens.forEach((item) =>{
                 if (item.name === 'Тип экранов'|| item.count === ''|| parseInt(item.count) < 1) check = false
                      else{
                     check = true
                 }   
             })
             if (check) {
-                appData.disable();
-                appData.addServices();
-                appData.addPrices(); 
-                appData.showResult();
+                this.disable();
+                this.addServices();
+                this.addPrices(); 
+                this.showResult();
 
             }}
         
